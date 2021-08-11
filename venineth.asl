@@ -66,7 +66,7 @@ update
     if(current.level != null && current.level.Contains("/Game/Maps"))
     {
         vars.oldLevel = vars.currentLevel;
-        vars.currentLevel = current.level.Replace("/Game/Maps/", "");
+        vars.currentLevel = current.level.Replace("/Game/Maps/", "").Replace("Secrets/", "");
         if(vars.oldLevel != vars.currentLevel)
         {
             vars.pauseUntilLoad = false;
