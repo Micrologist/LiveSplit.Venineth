@@ -65,7 +65,7 @@ update
         vars.SetTextComponent("Map", vars.currentLevel);
 	
     //todo remove
-    vars.SetTextComponent("ACHI", vars.currentAchi.ToString("X"));
+    vars.SetTextComponent("ACHI", current.achi.ToString("X"));
     
     if(current.level != null && current.level.Contains("/Game/Maps"))
     {
