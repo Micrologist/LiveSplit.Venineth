@@ -12,6 +12,7 @@ startup
     settings.Add("speedometer", true, "Show Speedometer");
     settings.Add("speedround", false, "Round to whole number", "speedometer");
     settings.Add("showMap", false, "Show Map Name");
+    settings.Add("showAchi", false, "[DEBUG] Show ACHI value");
     vars.currentLevel = "";
     vars.oldLevel = "";
 
@@ -64,8 +65,8 @@ update
     if(settings["showMap"])
         vars.SetTextComponent("Map", vars.currentLevel);
 	
-    //todo remove
-    vars.SetTextComponent("ACHI", current.achi.ToString("X"));
+    if(settings["showAchi"])
+        vars.SetTextComponent("ACHI", current.achi.ToString("X"));
     
     if(current.level != null && current.level.Contains("/Game/Maps"))
     {
@@ -86,7 +87,12 @@ start
 
 split
 {
-    return ((vars.oldLevel != vars.currentLevel && vars.oldLevel != "HUB" && vars.oldLevel != "LevelLoader" && vars.oldLevel != "Test" && vars.oldLevel != "") || (vars.currentLevel == "ApexOutro" && current.gameSpeed == 0.3f && old.gameSpeed == 0.5f));
+    if (vars.oldLevel != vars.currentLevel && vars.oldLevel != "HUB" && vars.oldLevel != "LevelLoader" && vars.oldLevel != "Test" && vars.oldLevel != "SecretLevel0X" && vars.oldLevel != "")
+        return true;
+    if (vars.currentLevel == "ApexOutro" && current.gameSpeed == 0.3f && old.gameSpeed == 0.5f)
+        return true;
+    if (vars.currentLevel == "SecretLevel0X" && current.achi != old.achi && old.achi != 0)
+        return true;
 }
 
 isLoading
