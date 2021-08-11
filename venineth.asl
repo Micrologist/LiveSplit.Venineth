@@ -4,6 +4,7 @@ state("Game-Win64-Shipping")
     float xVel : 0x02F6BA98, 0x0, 0xE8, 0x398, 0xD0;
     float yVel : 0x02F6BA98, 0x0, 0xE8, 0x398, 0xD4;
     float gameSpeed : 0x2F8AB60, 0x30, 0x240, 0x308;
+    long achi : 0x02F87630, 0x58, 0x3C0;
 }
 
 startup
@@ -62,7 +63,10 @@ update
 
     if(settings["showMap"])
         vars.SetTextComponent("Map", vars.currentLevel);
-
+	
+    //todo remove
+    vars.SetTextComponent("ACHI", vars.currentAchi.ToString("X");
+    
     if(current.level != null && current.level.Contains("/Game/Maps"))
     {
         vars.oldLevel = vars.currentLevel;
